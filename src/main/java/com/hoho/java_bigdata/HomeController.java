@@ -2,7 +2,9 @@ package com.hoho.java_bigdata;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +42,13 @@ public class HomeController {
 	public String crawling(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Crawl crawling = new Crawl();
+		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-//			String result = crawling.melon();
-//			model.addAttribute("result", result );
-			crawling.melon_rank();
+			DB melonDB = new DB();
+			melonDB.DBMelon(); //DB접속하기						
+			result = crawling.melon_rank();			
+			melonDB.insert_melon(result);	
+			model.addAttribute("result", result );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,9 +61,15 @@ public class HomeController {
 	public String movie_crawl(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Crawl crawling = new Crawl();
+		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			crawling.movie_rank();
-//			model.addAttribute("result", result );
+			DB cgvDB = new DB();
+			cgvDB.DBCgv(); //DB접속하기
+			result = crawling.movie_rank();
+			cgvDB.insert_cgv(result);
+			System.out.println(result.get("rank_info"));
+			System.out.println(result.get("rank_info").getClass().getName());
+			model.addAttribute("result", result.get("rank_info") );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
