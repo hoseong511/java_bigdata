@@ -3,6 +3,8 @@ package com.hoho.java_bigdata;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -38,8 +40,8 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/ctest", method = RequestMethod.GET)
-	public String crawling(Locale locale, Model model) {
+	@RequestMapping(value = "/crawl_melon", method = RequestMethod.GET)
+	public String crawl_melon(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Crawl crawling = new Crawl();
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -57,8 +59,8 @@ public class HomeController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/movie_crawl", method = RequestMethod.GET)
-	public String movie_crawl(Locale locale, Model model) {
+	@RequestMapping(value = "/crawl_cgv", method = RequestMethod.GET)
+	public String crawl_cgv(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Crawl crawling = new Crawl();
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -76,6 +78,95 @@ public class HomeController {
 		}
 		
 		return "main";
+	}
+	
+	@RequestMapping(value = "/select_melon", method = RequestMethod.GET)
+	public String select_melon(Locale locale, Model model) {		
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			DB melonDB = new DB();
+			melonDB.DBMelon(); //DB접속하기
+			List<Map<String, Object>> rList = melonDB.select_melon();
+			Iterator<Map<String, Object>> it = rList.iterator();
+			
+			while(it.hasNext()) {
+				Map<String, Object> rMap = it.next();
+				System.out.println("-------------------------");
+				System.out.println("time: " + rMap.get("time"));
+				
+				List<Map<String,Object>> rankList = (List<Map<String, Object>>)rMap.get("rank_info");
+				Iterator<Map<String, Object>> mlt = rankList.iterator();
+				
+				while(mlt.hasNext()) {
+					System.out.println("-------------------------");
+					Map<String, Object> mMap = mlt.next();
+					System.out.println("타이틀: "+ mMap.get("title"));
+					System.out.println("가사: "+ mMap.get("sing"));					
+				}
+			}
+			
+			
+			model.addAttribute("result", result.get("rank_info") );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "main";
+	}
+	
+	@RequestMapping(value = "/select_cgv", method = RequestMethod.GET)
+	public String select_cgv(Locale locale, Model model) {		
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			DB cgvDB = new DB();
+			cgvDB.DBCgv(); //DB접속하기
+			List<Map<String, Object>> rList = cgvDB.select_cgv();
+			Iterator<Map<String, Object>> it = rList.iterator();
+			
+			while(it.hasNext()) {
+				Map<String, Object> rMap = it.next();
+				System.out.println("-------------------------");
+				System.out.println("time: " + rMap.get("time"));
+				
+				List<Map<String,Object>> rankList = (List<Map<String, Object>>)rMap.get("rank_info");
+				Iterator<Map<String, Object>> mlt = rankList.iterator();
+				
+				while(mlt.hasNext()) {
+					System.out.println("-------------------------");
+					Map<String, Object> mMap = mlt.next();
+					System.out.println("순위: "+ mMap.get("movie_rank"));
+					System.out.println("제목: "+ mMap.get("movie_name"));
+					System.out.println("예매: "+ mMap.get("movie_reserve"));
+				}
+			}
+			
+			
+			model.addAttribute("result", result.get("rank_info") );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "main";
+	}
+	
+	@RequestMapping(value = "/word", method = RequestMethod.GET)
+	public String word(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "word";
 	}
 	
 }

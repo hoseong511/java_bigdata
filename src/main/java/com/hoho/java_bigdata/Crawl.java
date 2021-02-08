@@ -22,7 +22,7 @@ public class Crawl {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");		
 		
 		int rank_cnt = 1;
-		int top = 5; //원하는 순위까지 출력하기	
+		int top = 50; //원하는 순위까지 출력하기	
 		
 		Document doc = null;
 		doc = Jsoup.connect(chart_url).get();		
