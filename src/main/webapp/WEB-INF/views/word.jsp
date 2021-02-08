@@ -55,9 +55,9 @@
 
     var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
-            .range(["#FF0000", "#FF8000", "#fff511", "#40FF00", "#0100f6", "#0d0189", "#7401DF", "#FA58F4", "#0e0404", "#919191", "#fff4e0", "#c7c7c7"]);
+            .range(["#FF0000", "#FF8000", "#fff511", "#40FF00", "#0100f6", "#0d0189", "#7401DF", "#FA58F4", "#0e0404", "#ff8f8f", "#0f0f0f", "#000000"]);
 
-    d3.layout.cloud().size([1000, 1000])
+    d3.layout.cloud().size([1500, 800])
             .words(frequency_list)
             .rotate(0)
             .fontSize(function(d) { return d.size; })
@@ -66,13 +66,13 @@
 
     function draw(words) {
         d3.select("body").append("svg")
-                .attr("width", 950)
-                .attr("height", 950)
+                .attr("width", 1450)
+                .attr("height", 750)
                 .attr("class", "wordcloud")
                 .append("g")
                 // without the transform, words words would get cutoff to the left and top, they would
                 // appear outside of the SVG area
-                .attr("transform", "translate(320,200)")
+                .attr("transform", "translate(670,400)")
                 .selectAll("text")
                 .data(words)
                 .enter().append("text")
