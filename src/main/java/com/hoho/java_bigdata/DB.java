@@ -18,12 +18,12 @@ public class DB {
 	MongoClient mongoClient;
 	
 	public void DBMelon() {
-		mongoClient = MongoClients.create("mongodb://52.79.196.232:27017");
+		mongoClient = MongoClients.create("mongodb://0.0.0.0:27017");
 		database = mongoClient.getDatabase("bigdata_melon");
 	}
 	
 	public void DBCgv() {
-		mongoClient = MongoClients.create("mongodb://52.79.196.232:27017");
+		mongoClient = MongoClients.create("mongodb://0.0.0.0:27017");
 		database = mongoClient.getDatabase("bigdata_CGV");
 	}
 	
