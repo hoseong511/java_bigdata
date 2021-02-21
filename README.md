@@ -3,6 +3,7 @@
 ![image](https://user-images.githubusercontent.com/62678380/107290500-fb1e0d00-6aa9-11eb-8174-e763b4141f51.png)
 
 MongoDB v4.4.3   
-jdk 1.8
-macOS Catalina v10.15.7
+jdk 1.8   
+tomcat v8.5
+macOS Catalina v10.15.7   
 
