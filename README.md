@@ -1,10 +1,13 @@
 # Crawling, WordCloud
 
 멜론 top50의 노래가사를 크롤링하여 WordCloud로 시각화   
-MongoDB v4.4.3     
+
+d3.js
 Spring   
+
 jdk 1.8   
 tomcat v8.5   
+MongoDB v4.4.3     
 macOS Catalina v10.15.7   
    
 ### ...
