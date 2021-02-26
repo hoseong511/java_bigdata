@@ -8,7 +8,7 @@ tomcat v8.5
 macOS Catalina v10.15.7   
    
 ### ...
-<p align="center"><img src="https://user-images.githubusercontent.com/62678380/109316942-785dc600-788f-11eb-8a91-24722fe3c537.png" width="400"></p>
+<img src="https://user-images.githubusercontent.com/62678380/109316942-785dc600-788f-11eb-8a91-24722fe3c537.png" width="400">
    
 ### Sample Test
 ![image](https://user-images.githubusercontent.com/62678380/107290500-fb1e0d00-6aa9-11eb-8174-e763b4141f51.png)
